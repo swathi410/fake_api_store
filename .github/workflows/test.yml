@@ -1,0 +1,18 @@
+import requests
+
+BASE_URL = "https://fakestoreapi.com"
+
+def get_all_products():
+    PRODUCT_URL = f"{BASE_URL}/products"
+    response = requests.get(PRODUCT_URL, timeout=30)
+
+    if response.status_code == 200:
+        products = response.json()
+        for product in products:
+            print(f"{product.get('id')} <==> {product.get('title')}")
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.text)
+
+if __name__ == "__main__":
+    get_all_products()
